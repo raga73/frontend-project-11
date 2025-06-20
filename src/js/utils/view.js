@@ -1,34 +1,22 @@
-import * as yup from 'yup';
 import onChange from 'on-change';
 
-export default (state, feedBack, input) => {
-  
-  const render = () => {
+const urlFieldRender = (path, value, state, form, instance) => {
+  const feedBack = document.querySelector('.feedback');
+  const input = form.querySelector('input');
   feedBack.textContent = '';
-  if (state.errors.length !== 0) {
-    feedBack.textContent = state.errors
-    input.classList.add('is-invalid')
+  if (path === 'error') {
+    feedBack.textContent = instance.t(`errors.${state.error}`);
+    input.classList.add('is-invalid');
   } else {
-    input.classList.remove('is-invalid')
+    input.classList.remove('is-invalid');
+    input.focus();
+    form.reset();
   }
 };
 
-const watchedState = onChange(state, () => render());
-
-const validateForm = () => {
-    const userSchema = yup.string()
-      .required()
-      .url('Ссылка должна быть валидным URL')
-      .matches(/(\.rss|\.xml)/, 'Ресурс не содержит валидный RSS')
-      .notOneOf(state.feedsList, 'RSS уже существует');
-    userSchema.validate(state.userUrl)
-      .then(validUrl => {
-        watchedState.feedsList = [...watchedState.feedsList, validUrl];
-      })
-      .catch(e => {
-        [watchedState.errors] = e.errors;
-      })
-};
-validateForm();
+export default (state, form, instance) => {
+  return onChange(state, (path, value) => {
+      urlFieldRender(path, value, state, form, instance)
+  });
 };
 
