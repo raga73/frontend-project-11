@@ -1,24 +1,24 @@
 import * as yup from 'yup';
 
-export default (url, watcher) => {
+export default (url, urlList) => {
    yup.setLocale({
       mixed: {
-         required: 1,
-         url: 2,
-         matches: 3,
-         notOneOf: 4,
-      }
+         required: 'empty',
+         notOneOf: 'exist',
+      },
+      string: {
+        url: 'notAUrl',
+      },
    })
     const userSchema = yup.string()
       .required()
       .url()
-      .matches(/(\.rss|\.xml)/)
-      .notOneOf(watcher.feedsList);
-    userSchema.validate(url)
-      .then((validUrl) => {
-         watcher.feedsList.push(validUrl);
+      .notOneOf(Object.keys(urlList));
+    return userSchema.validate(url)
+      .then(() => {
+         return null;
       })
       .catch((e) => {
-         watcher.error = e.message;
+         return e.message;
       })
 };
