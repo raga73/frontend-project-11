@@ -7,5 +7,8 @@ export default {
       'exist': 'RSS уже существует',
       'networkError': 'Ошибка сети'
     },
+    successed: {
+      'successedLink': 'RSS успешно загружен',
+    },
   },
 };

@@ -13,7 +13,7 @@ export default (url, urlList) => {
     const userSchema = yup.string()
       .required()
       .url()
-      .notOneOf(Object.keys(urlList));
+      .notOneOf(urlList);
     return userSchema.validate(url)
       .then(() => {
          return null;
