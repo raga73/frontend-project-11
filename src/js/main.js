@@ -1,13 +1,12 @@
 // Import our custom CSS
-import '../scss/styles.scss';
-import _ from 'lodash';
-import watcher from './utils/view.js';
-import validator from './utils/validator.js';
-import parser from './utils/parser.js';
-import axios from 'axios';
+import '../scss/styles.scss'
+import _ from 'lodash'
+import watcher from './utils/view.js'
+import validator from './utils/validator.js'
+import parser from './utils/parser.js'
+import axios from 'axios'
 
-export default (i18nInstance) => {
-  
+export default (i18nInstance) => {  
   const state = {
     urls: [],
     feeds: [],
@@ -18,7 +17,7 @@ export default (i18nInstance) => {
     posts: [],
     viewedPostsId: new Set(),
     clickedPostId: '',
-  };
+  }
 
   const form = document.querySelector('form');
   const button = document.querySelector('button');
