@@ -25,7 +25,7 @@ const render = (path, value, state, form, button, instance) => {
 
   const postsRender = () => {
     posts.textContent = ''
-    state.posts.filter((post) => post.feedId === state.currentFeedId)
+    state.posts.filter(post => post.feedId === state.currentFeedId)
       .map((post) => {
         const currentPostClass = {
           class: 'fw-bold',

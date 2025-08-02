@@ -8,7 +8,6 @@ export default {
   server: {
     port: 8080,
   },
-  // Optional: Silence Sass deprecation warnings. See note below.
   css: {
     preprocessorOptions: {
       scss: {
