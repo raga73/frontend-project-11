@@ -2,7 +2,6 @@ import app from './main.js'
 import i18next from 'i18next'
 import ru from './locales/ru.js'
 
-
 const initializateI18n = () => {
   const defaultLanguage = 'ru'
   const instance = i18next.createInstance()
@@ -14,7 +13,7 @@ const initializateI18n = () => {
     },
   }).then(() => {
     return instance
-})
+  })
 }
 
 initializateI18n()

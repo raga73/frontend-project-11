@@ -6,7 +6,7 @@ import validator from './utils/validator.js'
 import parser from './utils/parser.js'
 import axios from 'axios'
 
-export default (i18nInstance) => {  
+export default (i18nInstance) => {
   const state = {
     urls: [],
     feeds: [],
@@ -19,29 +19,29 @@ export default (i18nInstance) => {
     clickedPostId: '',
   }
 
-  const form = document.querySelector('form');
-  const button = document.querySelector('button');
-  const posts = document.querySelector('.posts');
+  const form = document.querySelector('form')
+  const button = document.querySelector('button')
+  const posts = document.querySelector('.posts')
 
   const loader = (url, state) => {
-    state.linkStatus = 'loading';
+    state.linkStatus = 'loading'
     axios.get(`https://allorigins.hexlet.app/get?disableCache=true&url=${url}`)
-      .then(response => {
-        const data = parser(response);
+      .then((response) => {
+        const data = parser(response)
         if (data === 'notARSS') {
-                      state.error = 'notARSS';
-      state.linkStatus = 'failed';
+          state.error = 'notARSS'
+          state.linkStatus = 'failed'
         } else {
-        const { feed, posts } = data;
-        feed.id = _.uniqueId();
-        feed.link = url;
-        state.feeds.push(feed);
-        state.posts = posts.map((post) => {
-         return { ...post, 
-            id: _.uniqueId(), 
-            feedId: feed.id,
+          const { feed, posts } = data
+          feed.id = _.uniqueId()
+          feed.link = url
+          state.feeds.push(feed)
+          state.posts = posts.map((post) => {
+           return { ...post, 
+              id: _.uniqueId(),
+              feedId: feed.id,
+            }
           }
-        }
         )
         state.currentFeedId = feed.id;
          watchedState.linkStatus = 'successed';
