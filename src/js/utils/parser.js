@@ -5,7 +5,8 @@ export default (response) => {
   const errorNode = doc.querySelector('parsererror')
   if (errorNode) {
     return 'notARSS'
-  } else {
+  }
+  else {
     return {
       feed:
           {

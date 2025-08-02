@@ -14,8 +14,8 @@ export default (url, urlList) => {
     .required()
     .url()
     .notOneOf(urlList)
-   return userSchema.validate(url)
-     .then(() => {
+  return userSchema.validate(url)
+    .then(() => {
       return null
     })
     .catch((e) => {
