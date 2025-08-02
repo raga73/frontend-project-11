@@ -31,13 +31,14 @@ export default (i18nInstance) => {
         if (data === 'notARSS') {
           state.error = 'notARSS'
           state.linkStatus = 'failed'
-        } else {
+        }
+        else {
           const { feed, posts } = data
           feed.id = _.uniqueId()
           feed.link = url
           state.feeds.push(feed)
           state.posts = posts.map((post) => {
-            return { ...post, 
+            return { ...post,
               id: _.uniqueId(),
               feedId: feed.id,
             }
@@ -110,8 +111,8 @@ export default (i18nInstance) => {
   })
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('fade')
-          || e.target.classList.contains('btn-close')
-          || e.target.classList.contains('btn-secondary')) {
+      || e.target.classList.contains('btn-close')
+      || e.target.classList.contains('btn-secondary')) {
       watchedState.modalWindowStatus = 'close'
       watchedState.clickedPostId = ''
     }
