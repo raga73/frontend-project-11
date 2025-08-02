@@ -15,9 +15,7 @@ const initializateI18n = () => {
     return instance
   })
 }
-
 initializateI18n()
   .then((i18nInstance) => {
     app(i18nInstance)
   })
-  
