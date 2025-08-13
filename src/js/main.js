@@ -23,9 +23,15 @@ export default (i18nInstance) => {
   const button = document.querySelector('button')
   const posts = document.querySelector('.posts')
 
+  const createLink = (url) => {
+    const baseUrl = new URL('https://allorigins.hexlet.app/get?disableCache=true')
+    baseUrl.searchParams.set('url', url)
+    return (baseUrl.toString())
+  }
+
   const loader = (url, state) => {
     state.linkStatus = 'loading'
-    axios.get(`https://allorigins.hexlet.app/get?disableCache=true&url=${url}`)
+    axios.get(createLink(url))
       .then((response) => {
         const data = parser(response)
         if (data === 'notARSS') {
@@ -56,7 +62,7 @@ export default (i18nInstance) => {
 
   const refresh = (state) => {
     state.feeds.map(({ id, link }) => {
-      axios.get(`https://allorigins.hexlet.app/get?disableCache=true&url=${link}`)
+      axios.get(createLink(link))
         .then((response) => {
           const data = parser(response)
           const { posts } = data
